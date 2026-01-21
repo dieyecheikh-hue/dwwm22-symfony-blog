@@ -35,4 +35,3 @@ class AppGenerateLocalSecretKeyCommand extends Command
         return Command::SUCCESS;
     }
 }
-
