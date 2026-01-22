@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        {% block stylesheets %}
+                {{ encore_entry_link_tags('app') }}
+            {% endblock %}
+
+            {% block javascripts %}
+                {{ encore_entry_script_tags('app') }}
+            {% endblock %}
+    </head>
+    <body>
+        
+    </body>
+</html>
+
+
+
+
+{# <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <h1>Register</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.firstName) }}
+        {{ form_row(registrationForm.lastName) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.password.first, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.password.second, {}) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
+{% endblock %} #}
