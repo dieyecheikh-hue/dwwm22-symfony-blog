@@ -40,8 +40,11 @@
     - Sauvegarder l'application
         - ```git commit -m "Message du commit"```
     - Envoyer le code sur la branche créée
-        - ```git push origin ...```
+        - ```git push --set upstream origin nom-de-la-branche```
     - Proposer ce code pour la fusion 
         - (Pull Request)
     - Après la revue de code, fusionner le brouillon (branche) au main 
         - (Merge Request)
+    - En local,
+      -Switcher sur la branche 'main'
+      -Le mettre à jour dans cette branche 'git pull origin main'    
