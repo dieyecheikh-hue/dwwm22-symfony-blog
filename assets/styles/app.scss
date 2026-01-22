@@ -4,5 +4,17 @@
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap"; 
 
+
 // 2. base
-@import "./base/typography"
+@import "./base/typography";
+
+// Layout
+
+
+// Pages
+
+
+// Components
+
+// themes
+@import "./themes/base_visitor.scss";
