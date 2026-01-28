@@ -41,6 +41,11 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
+            # configure the maximum login attempts
+            login_throttling:
+                max_attempts: 3          # per minute ...
+                interval: '1 minute' # ... or in a custom period
+
     # Note: Only the *first* matching rule is applied
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
