@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
@@ -38,16 +38,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
-                        <img class="img-fluid" src="/images/static/doctor-40.png" alt="Docteur Jean Dupont vous invite à vous inscrire">
+                        <img class="img-fluid" src="/images/static/doctor-jean-dupont-inscription.png" alt="Docteur Jean Dupont vous invite à vous inscrire">
                     </div>
-
-                    {% for flash_error in app.flashes('verify_email_error') %}
-                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-                    {% endfor %}
-
-
                     <div class="col-lg-6">
                         <h1 class="text-center my-3">Inscription</h1>
+
+                        {% for flash_error in app.flashes('verify_email_error') %}
+                            <div class="alert alert-danger text-center" role="alert">{{ flash_error }}</div>
+                        {% endfor %}
 
                         {{form_start(registrationForm)}}
                             <div class="row">
@@ -83,6 +81,7 @@
                                 {{form_widget(registrationForm.password.second, {'attr': {'class':'form-control'}})}}
                             </div>
                             <div class="mb-3">
+                                <div class="text-danger">{{form_errors(registrationForm.agreeTerms)}}</div>
                                 {{form_widget(registrationForm.agreeTerms)}} 
                                 <label for="registration_form_agreeTerms">
                                     Lire et accepter <a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">les conditions générales d'utilisation</a>
@@ -277,7 +276,7 @@
                         {{form_end(registrationForm)}}
 
                         <div class="d-flex flex-column justify-content-center align-items-center my-4">
-                            <p>Vous avez déjà un compte? <a href="">Connectez-vous</a></p>
+                            <p>Vous avez déjà un compte? <a href="{{path('app_login')}}">Connectez-vous</a></p>
                             <p><a href="{{path('app_visitor_welcome')}}">Retour à l'accueil</a></p>
                         </div>
                     </div>
@@ -286,5 +285,3 @@
         </main>
     </body>
 </html>
-
-
