@@ -47,4 +47,4 @@
         - (Merge Request)
     - En local,
       -Switcher sur la branche 'main'
-      -Le mettre à jour dans cette branche 'git pull origin main'    
+      -Le mettre à jour dans cette branche 'git pull origin main'    g
