@@ -46,5 +46,5 @@
     - Après la revue de code, fusionner le brouillon (branche) au main 
         - (Merge Request)
     - En local,
-      -Switcher sur la branche 'main'
+      -Switcher sur la branche 'main'  
       -Le mettre à jour dans cette branche 'git pull origin main'    
