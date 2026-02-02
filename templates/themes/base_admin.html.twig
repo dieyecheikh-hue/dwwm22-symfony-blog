@@ -6,12 +6,9 @@
 		<meta name="description" content="{% block description %}{% endblock %}">
 		<meta name="author" content="Jean Dupont">
 		<meta name="publisher" content="Dwmm22">
-		<title>
-			{% block title %}{% endblock %}
-			· Blog santé du Dr Jean Dupont</title>
+		<title>{% block title %}{% endblock %} · Blog santé du Dr Jean Dupont</title>
 		<meta name="keywords" content="{% block keywords %}{% endblock %}">
-		<link
-		rel="canonical" href="https://medecine-du-monde.com">
+		<link rel="canonical" href="https://medecine-du-monde.com">
 
 		{# Webpack Encore #}
 		{% block stylesheets %}
@@ -166,16 +163,11 @@
 	</head>
 
 	<body>
+
+        {# Navbar #}
 		<header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
 			<a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">JD</a>
 			<ul class="navbar-nav flex-row d-md-none">
-				<li class="nav-item text-nowrap">
-					<button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
-						<svg class="bi" aria-hidden="true">
-							<use xlink:href="#search"></use>
-						</svg>
-					</button>
-				</li>
 				<li class="nav-item text-nowrap">
 					<button class="nav-link px-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
 						<i class="fa-solid fa-bars"></i>
@@ -183,6 +175,7 @@
 				</li>
 			</ul>
 		</header>
+
 		<div class="container-fluid">
 			<div class="row">
 
@@ -196,7 +189,7 @@
 						<div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
 							<ul class="nav flex-column">
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
+									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_admin_home')}}">
 										<i class="fa-solid fa-house"></i>
 										Tableau de bord
 									</a>
@@ -260,19 +253,19 @@
 
 							<ul class="nav flex-column mb-auto">
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
+									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_user_home')}}">
 										<i class="fa-solid fa-outdent"></i>
 										Espace utilisateur
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
+									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_visitor_welcome')}}">
 										<i class="fa-solid fa-arrow-rotate-left"></i>
 										Retour au site
 									</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="#">
+									<a class="nav-link d-flex align-items-center gap-2 text-dark" href="{{path('app_logout')}}">
 										<i class="fa-solid fa-arrow-right-from-bracket"></i>
 										Déconnexion
 									</a>
@@ -282,7 +275,7 @@
 					</div>
 				</div>
 
-                {# Main #}
+                {# Main: The specific content for each page #}
 				<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                     {% block main %}{% endblock %}
 				</main>
