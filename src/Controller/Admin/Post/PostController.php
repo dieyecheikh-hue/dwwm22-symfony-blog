@@ -7,7 +7,6 @@ use App\Entity\User;
 use App\Form\Admin\PostFormType;
 use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
-use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,13 +16,12 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin')]
 final class PostController extends AbstractController
 {
-
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
         private readonly PostRepository $postRepository,
         private readonly CategoryRepository $categoryRepository,
-    ) {}
-
+    ) {
+    }
 
     #[Route('/post/index', name: 'app_admin_post_index', methods: ['GET'])]
     public function index(): Response
@@ -38,9 +36,9 @@ final class PostController extends AbstractController
     #[Route('/post/create', name: 'app_admin_post_create', methods: ['GET', 'POST'])]
     public function create(Request $request): Response
     {
+        if (0 == $this->categoryRepository->count()) {
+            $this->addFlash('warning', 'Pour rédiger des articles, vous devez avoir une une catégorie.');
 
-        if ($this->categoryRepository->count() == 0) {
-            $this->addFlash("warning", "Pour rédiger des articles, vous devez avoir une une catégorie.");
             return $this->redirectToRoute('app_admin_category_index');
         }
 
@@ -121,12 +119,11 @@ final class PostController extends AbstractController
     #[Route('/post/{id<\d+>}/publish', name: 'app_admin_post_publish', methods: ['POST'])]
     public function publish(Post $post, Request $request): Response
     {
-
         // 1. Si le jéton de sécurité est invalide, alors
         if (!$this->isCsrfTokenValid("publish-post-{$post->getId()}", $request->request->get('csrf_token'))) {
             // Redirigeons l'administrateur vers la page listant les articles.
             // Puis, arrêter l'exécution du script.
-            return $this->redirectToRoute("app_admin_post_index");
+            return $this->redirectToRoute('app_admin_post_index');
         }
 
         /*
@@ -140,12 +137,11 @@ final class PostController extends AbstractController
             $post->setIsPublished(true);
 
             // Mettons à jour la date de publication
-            $post->setPublishedAt(new DateTimeImmutable());
+            $post->setPublishedAt(new \DateTimeImmutable());
 
             // Générons le message flash correspondant.
-            $this->addFlash("success", "L'article a été publié");
+            $this->addFlash('success', "L'article a été publié");
         } else {
-
             // 3. Dans le cas contraire, retirer l'article de la liste des publications,
             $post->setIsPublished(false);
 
@@ -153,7 +149,7 @@ final class PostController extends AbstractController
             $post->setPublishedAt(null);
 
             // Générons le message flash correspondant.
-            $this->addFlash("success", "L'article a été retiré de la liste des publications.");
+            $this->addFlash('success', "L'article a été retiré de la liste des publications.");
         }
 
         // Mettre à jour les informations en base de données
@@ -162,6 +158,6 @@ final class PostController extends AbstractController
 
         // Effectuer une redirection vers la page listant les articles
         // Puis, arrêter l'exécution du script.
-        return $this->redirectToRoute("app_admin_post_index");
+        return $this->redirectToRoute('app_admin_post_index');
     }
 }
