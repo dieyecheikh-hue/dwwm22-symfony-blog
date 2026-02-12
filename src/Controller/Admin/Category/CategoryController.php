@@ -14,13 +14,11 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin')]
 final class CategoryController extends AbstractController
 {
-
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
-        private readonly CategoryRepository $categoryRepository
+        private readonly CategoryRepository $categoryRepository,
     ) {
     }
-
 
     #[Route('/category/index', name: 'app_admin_category_index', methods: ['GET'])]
     public function index(): Response
@@ -83,8 +81,7 @@ final class CategoryController extends AbstractController
     public function delete(Category $category, Request $request): Response
     {
         if ($this->isCsrfTokenValid("category-{$category->getId()}", $request->request->get('csrf_token'))) {
-
-            if ( count($category->getPosts()) == 0 ) {
+            if (0 == count($category->getPosts())) {
                 $this->addFlash('success', "La catégorie: {$category->getName()} a été supprimé");
             } else {
                 $this->addFlash('success', "La catégorie: {$category->getName()} ainsi que tous ses articles ont été supprimés.");

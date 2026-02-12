@@ -5,12 +5,10 @@ namespace App\Entity;
 use App\Repository\PostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Attribute as Vich;
-use Gedmo\Mapping\Annotation as Gedmo;
-
-
 
 #[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: PostRepository::class)]
@@ -40,7 +38,6 @@ class Post
     )]
     #[ORM\Column(length: 255)]
     private ?string $title = null;
-
 
     #[Gedmo\Slug(fields: ['title'])]
     #[ORM\Column(length: 255)]
